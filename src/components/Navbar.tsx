@@ -9,8 +9,8 @@ const Navbar = () => {
         <div className="flex items-center">
           <Image
             src="/treasure.png"
-            width={35}
-            height={35}
+            width={45}
+            height={45}
             className="object-fit cursor-pointer"
             alt="Picture of the author"
           />
