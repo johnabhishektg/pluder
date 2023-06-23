@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import UserAuthForm from "./UserAuthForm";
 
 const SignIn = () => {
   return (
@@ -11,6 +13,19 @@ const SignIn = () => {
         <p className="text-sm max-w-xs mx-auto">
           By continuing, you are setting up a Plunder account and afree to our
           User Agreement and Privancy Policy
+        </p>
+
+        {/* signin */}
+        <UserAuthForm />
+
+        <p className="px-8 text-center text-sm text-zinc-700">
+          New to Plunder?{" "}
+          <Link
+            href={"/sign-up"}
+            className="hover:text-zinc-800 text-sm underline underline-offset-4"
+          >
+            Sign up
+          </Link>
         </p>
       </div>
     </div>
