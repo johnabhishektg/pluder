@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import "@/styles/globals.css";
 import SignIn from "@/components/SignIn";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           <SignIn />
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   );
