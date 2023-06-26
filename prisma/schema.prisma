@@ -7,12 +7,9 @@ generator client {
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL") // uses connection pooling
+  relationMode = "prisma"
 }
 
-enum VoteType {
-  UP
-  DOWN
-}
 
 model Account {
   id                String  @id @default(cuid())
@@ -28,9 +25,10 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -39,6 +37,9 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+  @@index([userId])
 }
 
 model User {

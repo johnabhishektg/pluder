@@ -1,8 +1,8 @@
-import { NextAuthOptions } from "next-auth";
+import { NextAuthOptions, getServerSession } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import GoogleProvider from "next-auth/providers/google";
-import prisma from "./prisma";
+import prisma from "@/lib/prisma";
 import { nanoid } from "nanoid";
 
 export const authOptions: NextAuthOptions = {
@@ -23,11 +23,11 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ token, session }) {
       if (token) {
-        session.user.id = token.id;
+        session.user.id = token.id as string;
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.picture;
-        session.user.username = token.username;
+        session.user.username = token.username as string;
       }
       return session;
     },
@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (!dbUser.username) {
-        await dbUser.user.update({
+        await prisma.user.update({
           where: {
             id: dbUser.id,
           },
@@ -61,5 +61,10 @@ export const authOptions: NextAuthOptions = {
         picture: dbUser.image,
       };
     },
+    redirect() {
+      return "/";
+    },
   },
 };
+
+export const getAuthSession = () => getServerSession(authOptions);
