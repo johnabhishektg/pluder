@@ -12,7 +12,7 @@ const SignIn = () => {
         </h1>
         <p className="text-sm max-w-xs mx-auto">
           By continuing, you are setting up a Plunder account and afree to our
-          User Agreement and Privancy Policy
+          User Agreement and Privacy Policy
         </p>
 
         {/* signin */}
