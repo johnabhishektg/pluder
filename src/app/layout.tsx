@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
 
 import "@/styles/globals.css";
-import SignIn from "@/components/SignIn";
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,8 +14,10 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html
@@ -26,8 +28,11 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full pt-12 bg-slate-50 antialiased">
+        <Navbar />
+
+        {authModal}
+
         <div className="container max-w-7xl mx-auto h-full pt-12">
-          <SignIn />
           {children}
         </div>
         <Toaster />
