@@ -30,7 +30,7 @@ export default function Home() {
             </div>
 
             <Link
-              href="/sign-in"
+              href="/l/create"
               className={buttonVariants({
                 className: "w-full mt-4 mb-4",
               })}
