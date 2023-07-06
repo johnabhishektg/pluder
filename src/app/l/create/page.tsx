@@ -1,12 +1,23 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   const [input, setInput] = useState<string>("");
+  const router = useRouter();
+
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const { data } = await axios.post("/api/topic");
+    },
+  });
 
   return (
     <div className="container flex items-center h-full max-w-3xl mx-auto">
@@ -33,6 +44,13 @@ const page: FC<pageProps> = ({}) => {
               className="pl-6"
             />
           </div>
+        </div>
+
+        <div className="flex justify-end gap-4">
+          <Button variant="outline" onClick={() => router.back()}>
+            Cancel
+          </Button>
+          <Button>Create Community</Button>
         </div>
       </div>
     </div>
