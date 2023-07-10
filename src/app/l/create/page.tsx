@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CreateTopicPayload } from "@/lib/validators/topic";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 
@@ -13,9 +15,13 @@ const page: FC<pageProps> = ({}) => {
   const [input, setInput] = useState<string>("");
   const router = useRouter();
 
-  const mutation = useMutation({
+  const { mutate: createTopic, isLoading } = useMutation({
     mutationFn: async () => {
-      const { data } = await axios.post("/api/topic");
+      const payload: CreateTopicPayload = {
+        name: input,
+      };
+      const { data } = await axios.post("/api/topic", payload);
+      return data as string;
     },
   });
 
@@ -50,7 +56,14 @@ const page: FC<pageProps> = ({}) => {
           <Button variant="outline" onClick={() => router.back()}>
             Cancel
           </Button>
-          <Button>Create Community</Button>
+
+          <Button disabled={isLoading}>
+            {isLoading ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <p>Create Community</p>
+            )}
+          </Button>
         </div>
       </div>
     </div>
