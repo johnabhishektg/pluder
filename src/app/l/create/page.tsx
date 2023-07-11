@@ -57,9 +57,15 @@ const page: FC<pageProps> = ({}) => {
             Cancel
           </Button>
 
-          <Button disabled={isLoading}>
+          <Button
+            onClick={() => createTopic()}
+            disabled={isLoading || input.length === 0}
+          >
             {isLoading ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              <div>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <p> Creating Community </p>
+              </div>
             ) : (
               <p>Create Community</p>
             )}
