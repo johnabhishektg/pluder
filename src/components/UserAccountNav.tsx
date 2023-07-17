@@ -12,6 +12,7 @@ import {
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { Button } from "./ui/button";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
@@ -44,7 +45,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <Link href="/community">Community</Link>
+          <Link href="l/create">Create Community</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>

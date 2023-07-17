@@ -30,6 +30,15 @@ export async function POST(req: Request) {
         creatorId: session.user.id,
       },
     });
+
+    await prisma.subscription.create({
+      data: {
+        userId: session.user.id,
+        topicId: topic.id,
+      },
+    });
+
+    return new Response(topic.name);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(error.message, { status: 422 });

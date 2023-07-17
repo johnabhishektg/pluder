@@ -62,7 +62,7 @@ const page: FC<pageProps> = ({}) => {
             disabled={isLoading || input.length === 0}
           >
             {isLoading ? (
-              <div>
+              <div className="flex items-center">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 <p> Creating Community </p>
               </div>
