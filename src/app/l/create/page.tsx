@@ -53,7 +53,7 @@ const page: FC = ({}) => {
       });
     },
     onSuccess: (data) => {
-      router.push(`/r/${data}`);
+      router.push(`/l/${data}`);
     },
   });
 

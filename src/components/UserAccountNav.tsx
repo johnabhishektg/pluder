@@ -12,7 +12,6 @@ import {
 import UserAvatar from "./UserAvatar";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
-import { Button } from "./ui/button";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
@@ -22,9 +21,7 @@ const UserAccountNav: FC<UserAccountNavProps> = ({ user }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <UserAvatar
-          user={{ name: user.name || null, image: user.image || null }}
-        />
+        <UserAvatar user={{ name: user.name, image: user.image || null }} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white" align="end">
         <div className="flex items-center justify-start gap-2 p-2">
