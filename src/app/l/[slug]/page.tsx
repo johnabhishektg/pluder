@@ -38,7 +38,7 @@ const page = async ({ params }: PageProps) => {
       <h1 className="font-bold text-3xl md:text-4xl h-14 capitalize">
         {topic.name}
       </h1>
-      <MiniCreatePost />
+      <MiniCreatePost session={session} />
     </>
   );
 };
